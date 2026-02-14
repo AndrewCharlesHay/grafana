@@ -5862,6 +5862,11 @@
       "aria-label-panel-links": "Panel links"
     }
   },
+  "dashboard-schema-editor": {
+    "format-label": "Format:",
+    "json-disabled-tooltip": "Fix YAML syntax errors to switch to JSON",
+    "yaml-disabled-tooltip": "Fix JSON syntax errors to switch to YAML"
+  },
   "dashboard-settings": {
     "annotations": {
       "title": "Annotations"
@@ -5892,6 +5897,8 @@
     },
     "json-editor": {
       "save-button": "Save changes",
+      "save-button-disabled-tooltip": "Fix validation errors before saving",
+      "save-button-disabled-tooltip-yaml": "Document has validation errors. Switch to JSON to see inline error details.",
       "subtitle": "The JSON model below is the data structure that defines the dashboard. This includes dashboard settings, panel settings, layout, queries, and so on.",
       "title": "JSON Model"
     },
@@ -6028,6 +6035,12 @@
       "paste-tab": "Paste tab",
       "ungroup-rows": "Ungroup rows",
       "ungroup-tabs": "Ungroup tabs"
+    },
+    "code-pane": {
+      "collapse": "Collapse editor",
+      "expand": "Expand editor",
+      "header": "Edit as code",
+      "modal-title": "Edit dashboard as code"
     },
     "conditional-rendering": {
       "conditions": {
@@ -6870,6 +6883,13 @@
       "save-json-to-file": "Save JSON to file",
       "see-docs": "See <2>documentation</2> for more information about provisioning."
     },
+    "schema-editor": {
+      "apply-button": "Apply changes",
+      "apply-button-disabled-tooltip": "Fix validation errors before applying changes",
+      "apply-button-disabled-tooltip-yaml": "Document has validation errors. Switch to JSON to see inline error details.",
+      "apply-error-title": "Failed to apply changes",
+      "undo-title": "Schema edit"
+    },
     "search-panel": {
       "no-match": "No panels matching"
     },
@@ -6884,6 +6904,10 @@
       "dashboard-options": {
         "title": "Options",
         "tooltip": "Dashboard options"
+      },
+      "edit-schema": {
+        "title": "Code",
+        "tooltip": "Edit as code"
       },
       "export": {
         "title": "Export"
