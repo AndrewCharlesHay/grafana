@@ -51,7 +51,7 @@ export function FinishedJobStatus({ jobUid, repositoryName, jobType, onStatusCha
     }
 
     if (finishedQuery.isSuccess && job?.status) {
-      const { state, message, errors } = job.status;
+      const { state, message, errors, warnings } = job.status;
 
       if (state === 'error') {
         onStatusChange?.({
@@ -73,7 +73,7 @@ export function FinishedJobStatus({ jobUid, repositoryName, jobType, onStatusCha
           status: 'warning',
           warning: {
             title: t('provisioning.job-status.status.title-warning-running-job', 'Job completed with warnings'),
-            message: errors?.length ? errors : message,
+            message: warnings?.length ? warnings : errors?.length ? errors : message,
           },
         });
       }

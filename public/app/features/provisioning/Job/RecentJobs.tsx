@@ -85,6 +85,7 @@ interface ExpandedRowProps {
 function ExpandedRow({ row }: ExpandedRowProps) {
   const hasSummary = Boolean(row.status?.summary?.length);
   const hasErrors = Boolean(row.status?.errors?.length);
+  const hasWarnings = Boolean(row.status?.warnings?.length);
   const hasSpec = Boolean(row.spec);
 
   // the action is already showing
@@ -104,15 +105,30 @@ function ExpandedRow({ row }: ExpandedRowProps) {
     return v;
   }, [row.spec]);
 
-  if (!hasSummary && !hasErrors && !hasSpec) {
+  if (!hasSummary && !hasErrors && !hasWarnings && !hasSpec) {
     return null;
   }
 
   const state = row.status?.state;
   const isValidState = state && ['success', 'warning', 'error'].includes(state);
+
+  const getAlertMessage = (): string | string[] | undefined => {
+    if (state === 'warning') {
+      return row.status?.warnings?.length
+        ? row.status.warnings
+        : row.status?.errors?.length
+          ? row.status.errors
+          : row.status?.message;
+    }
+    if (state === 'error') {
+      return row.status?.errors?.length ? row.status.errors : row.status?.message;
+    }
+    return row.status?.message;
+  };
+
   const alertProps = isValidState
     ? {
-        [state]: { message: row.status?.message },
+        [state]: { message: getAlertMessage() },
       }
     : null;
 

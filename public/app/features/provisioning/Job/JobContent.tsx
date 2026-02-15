@@ -21,7 +21,7 @@ export interface JobContentProps {
 export function JobContent({ jobType, job, isFinishedJob = false, onStatusChange }: JobContentProps) {
   const errorSetRef = useRef(false);
 
-  const { state, message, progress, summary, errors } = job?.status || {};
+  const { state, message, progress, summary, errors, warnings } = job?.status || {};
   const repoName = job?.metadata?.labels?.['provisioning.grafana.app/repository'];
   const pullRequestURL = job?.status?.url?.newPullRequestURL;
 
@@ -41,7 +41,7 @@ export function JobContent({ jobType, job, isFinishedJob = false, onStatusChange
             status: 'warning',
             warning: {
               title: t('provisioning.job-status.status.title-warning-running-job', 'Job completed with warnings'),
-              message: errors?.length ? errors : message,
+              message: warnings?.length ? warnings : errors?.length ? errors : message,
             },
           });
           errorSetRef.current = true;
@@ -66,7 +66,7 @@ export function JobContent({ jobType, job, isFinishedJob = false, onStatusChange
       default:
         break;
     }
-  }, [state, message, errors, onStatusChange]);
+  }, [state, message, errors, warnings, onStatusChange]);
 
   if (!job?.status) {
     return null;

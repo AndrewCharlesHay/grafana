@@ -257,12 +257,16 @@ func (JobStatus) OpenAPIModelName() string {
 
 // Convert a JOB to a
 func (in JobStatus) ToSyncStatus(jobId string) SyncStatus {
+	var messages []string
+	messages = append(messages, in.Errors...)
+	messages = append(messages, in.Warnings...)
+
 	return SyncStatus{
 		JobID:    jobId,
 		State:    in.State,
 		Started:  in.Started,
 		Finished: in.Finished,
-		Message:  in.Errors,
+		Message:  messages,
 	}
 }
 
